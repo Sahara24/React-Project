@@ -1,19 +1,18 @@
 import * as React from "react";
-import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
+import HomeIcon from '@mui/icons-material/Home';
+// import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import MailIcon from "@mui/icons-material/Mail";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import MoreIcon from "@mui/icons-material/MoreVert";
+import { useNavigate } from 'react-router-dom';
 
 export default function RespAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -22,8 +21,10 @@ export default function RespAppBar() {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
+  const navigate = useNavigate();
+
   const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
+    navigate('/login');
   };
 
   const handleMobileMenuClose = () => {
@@ -78,16 +79,8 @@ export default function RespAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      {/* <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem> */}
-      <MenuItem>
-        <IconButton size="large" aria-label="Items in cart" color="inherit">
+      <MenuItem onClick={() => navigate("/")}>
+        <IconButton size="large" aria-label="Items in cart" color="inherit" >
           <Badge badgeContent={2} color="error">
             <ShoppingCartIcon />
           </Badge>
@@ -119,8 +112,10 @@ export default function RespAppBar() {
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
+            onClick={() => navigate('/')}
           >
-            <MenuIcon />
+            {/* <MenuIcon /> */}
+            <HomeIcon />
           </IconButton>
           <Typography
             variant="h6"
@@ -130,27 +125,9 @@ export default function RespAppBar() {
           >
             E-SHOP
           </Typography>
-          {/* <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search> */}
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            {/* <IconButton
-              size="large"
-              aria-label="show 4 new mails"
-              color="inherit"
-            >
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
-            </IconButton> */}
-            <IconButton size="large" aria-label="Items in cart" color="inherit">
+            <IconButton size="large" aria-label="Items in cart" color="inherit" onClick={() => navigate('/')}>
               <Badge badgeContent={3} color="error">
                 <ShoppingCartIcon />
               </Badge>

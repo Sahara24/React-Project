@@ -6,17 +6,43 @@ export const setProduct = (data) => {
   };
 };
 
-export const selectedProduct = (data) => {
+export const selectProduct = (data) => {
   return {
     type: "SELECT_PRODUCT",
     payload: data,
   };
 };
 
-export const setProductCall = () => {
+export const removeProduct = () => {
+  return {
+    type: "REMOVE_PRODUCT",
+    payload: []
+  }
+}
+
+export const LoginStart = () => {
+  return {
+    type: "LOGIN_START",
+  }
+}
+
+export const LoginSuccess = (data) => {
+  return {
+    type: "LOGIN_SUCCESS",
+    payload: data
+  }
+}
+
+export const LoginFailure = (err) => {
+  return {
+    type: "LOGIN_FAILURE",
+    payload: err
+  }
+}
+
+
+export const setLogin = () => {
   return (dispatch) => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((data) => dispatch(setProduct(data)));
-  };
-};
+
+  }
+}

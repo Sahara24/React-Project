@@ -4,18 +4,15 @@ import { setProductCall } from "../Reducers/Actions";
 import { InfoCard } from "./InfoCard";
 import { Container } from "@mui/system";
 import Grid from "@mui/material/Grid";
+import StickyFooter from "./SFooter";
 
 export const List = () => {
   const inState = useSelector((state) => state.allProducts.products);
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(setProductCall());
-  }, []);
+  console.log(inState);
   return (
     <>
       <Container>
-        <Grid container spacing={5} marginTop="1rem">
+        <Grid container spacing={5} marginTop="3px" marginBottom="3px">
           {inState.map((el) => {
             return (
               <InfoCard
@@ -30,6 +27,7 @@ export const List = () => {
           })}
         </Grid>
       </Container>
+      <StickyFooter />
     </>
   );
 };

@@ -2,14 +2,21 @@ import React from "react";
 import Paper from "@mui/material/Paper";
 import { Grid, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
-import {} from "@mui/icons-material";
+import { } from "@mui/icons-material";
 import Rating from "@mui/material/Rating";
 import { ThemeProvider } from "@mui/material";
 import { mytheme } from "./Theme";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 export const InfoCard = (props) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const handleClick = (e, id) => {
+    setSearchParams({ userId: `${id}` })
+    navigate(`/${id}`)
+  }
   return (
-    <Grid item xs={12} sm={6} md={4} lg={3} key={props.uniqkey}>
+    <Grid item xs={12} sm={6} md={4} lg={3} key={props.uniqkey} className="cards" onClick={(e) => { handleClick(e, props.uniqkey) }}>
       <ThemeProvider theme={mytheme}>
         <Paper elevation={3}>
           <img src={`${props.image}`} alt={`${props.title}`} className="imgg" />
