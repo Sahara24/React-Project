@@ -19,9 +19,10 @@
   cursor: pointer;
 }
 
-.select-img {
-  width: 25rem;
-  height: 20rem;
+.select-images {
+  width: 100%;
+  height: 16rem;
+  padding: 1rem;
 }
 .select-container {
   width: 100%;
@@ -40,4 +41,30 @@
   width: 100%;
   padding: 1rem;
   height: 400px;
+}
+.description {
+  text-align: justify;
+}
+
+@media only screen and (max-width: 650px) {
+  .paper-select {
+    flex-direction: column;
+  }
+  .select-img-container {
+    padding-left: 6rem;
+    padding-right: 6rem;
+    max-width: "";
+  }
+  .select-info-container {
+    max-width: "";
+  }
+}
+
+@media only screen and (min-width: 650px) {
+  .select-img-container {
+    max-width: 40%;
+  }
+  .select-info-container {
+    max-width: 60%;
+  }
 }
