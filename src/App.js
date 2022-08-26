@@ -4,7 +4,6 @@ import RespAppBar from "./Components/RespAppBar";
 import { Routes, Route } from "react-router-dom";
 import Login from "./Components/Login";
 import SelectCard from "./Components/SelectCard";
-import { InfoCard } from "./Components/InfoCard";
 import SignUp from "./Components/SignUp";
 import Cart from "./Components/Cart";
 
