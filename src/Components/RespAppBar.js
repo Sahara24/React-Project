@@ -8,23 +8,30 @@ import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import HomeIcon from '@mui/icons-material/Home';
-// import MenuIcon from "@mui/icons-material/Menu";
-import AccountCircle from "@mui/icons-material/AccountCircle";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { signOut } from "../Reducers/Actions";
+import LogoutIcon from '@mui/icons-material/Logout';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
 
 export default function RespAppBar() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const loginState = useSelector(state => state.login.userDetails);
+  const isLogged = Object.keys(loginState).length > 0;
+  console.log(isLogged)
+  const dispatch = useDispatch();
+  const dataState = useSelector(state => state.carts.cart);
+  // const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
-  const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const navigate = useNavigate();
 
   const handleProfileMenuOpen = (event) => {
-    navigate('/login');
+    isLogged ? dispatch(signOut()) : navigate('/login');
   };
 
   const handleMobileMenuClose = () => {
@@ -32,7 +39,7 @@ export default function RespAppBar() {
   };
 
   const handleMenuClose = () => {
-    setAnchorEl(null);
+    // setAnchorEl(null);
     handleMobileMenuClose();
   };
 
@@ -41,26 +48,26 @@ export default function RespAppBar() {
   };
 
   const menuId = "primary-search-account-menu";
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
-  );
+  // const renderMenu = (
+  //   <Menu
+  //     anchorEl={anchorEl}
+  //     anchorOrigin={{
+  //       vertical: "top",
+  //       horizontal: "right",
+  //     }}
+  //     id={menuId}
+  //     keepMounted
+  //     transformOrigin={{
+  //       vertical: "top",
+  //       horizontal: "right",
+  //     }}
+  //     open={isMenuOpen}
+  //     onClose={handleMenuClose}
+  //   >
+  //     <MenuItem onClick={handleMenuClose}>Profile</MenuItem> 
+  //    <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+  //   </Menu>
+  // );
 
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
@@ -79,9 +86,9 @@ export default function RespAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem onClick={() => navigate("/")}>
+      <MenuItem onClick={() => navigate("/cart")}>
         <IconButton size="large" aria-label="Items in cart" color="inherit" >
-          <Badge badgeContent={2} color="error">
+          <Badge badgeContent={dataState.length} color="error">
             <ShoppingCartIcon />
           </Badge>
         </IconButton>
@@ -95,9 +102,9 @@ export default function RespAppBar() {
           aria-haspopup="true"
           color="inherit"
         >
-          <AccountCircle />
+          {isLogged ? <LogoutIcon /> : <LockOpenIcon />}
         </IconButton>
-        <p>Profile</p>
+        <p>{isLogged ? "Logout" : "Login"}</p>
       </MenuItem>
     </Menu>
   );
@@ -127,8 +134,8 @@ export default function RespAppBar() {
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <IconButton size="large" aria-label="Items in cart" color="inherit" onClick={() => navigate('/')}>
-              <Badge badgeContent={3} color="error">
+            <IconButton size="large" aria-label="Items in cart" color="inherit" onClick={() => navigate('/cart')}>
+              <Badge badgeContent={dataState.length} color="error">
                 <ShoppingCartIcon />
               </Badge>
             </IconButton>
@@ -141,7 +148,7 @@ export default function RespAppBar() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
+              {isLogged ? <LogoutIcon /> : <LockOpenIcon />}
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
@@ -159,7 +166,7 @@ export default function RespAppBar() {
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
-      {renderMenu}
+      {/* {renderMenu} */}
     </Box>
   );
 }

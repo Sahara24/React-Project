@@ -1,48 +1,50 @@
-export const setProduct = (data) => {
+import { loginInitialState } from "./loginReducer";
+
+export const AddToCart = (data) => {
   // console.log(data);
   return {
-    type: "SET_PRODUCT",
+    type: "ADD_TO_CART",
     payload: data,
   };
 };
 
-export const selectProduct = (data) => {
+export const removeFromCart = (data) => {
   return {
-    type: "SELECT_PRODUCT",
-    payload: data,
-  };
-};
-
-export const removeProduct = () => {
-  return {
-    type: "REMOVE_PRODUCT",
-    payload: []
-  }
-}
-
-export const LoginStart = () => {
-  return {
-    type: "LOGIN_START",
-  }
-}
-
-export const LoginSuccess = (data) => {
-  return {
-    type: "LOGIN_SUCCESS",
+    type: "REMOVE_FROM_CART",
     payload: data
   }
 }
 
-export const LoginFailure = (err) => {
+
+export const signOut = () => {
   return {
-    type: "LOGIN_FAILURE",
-    payload: err
+    type: 'LOG_OUT'
+  }
+}
+
+export const loginSuccessful = (data) => {
+  // console.log(data)
+  return {
+    type: 'login-success',
+    payload: data
+  }
+}
+//this is a synchronous action
+export const loginFailure = (msg) => {
+  return {
+    type: 'login-failure',
+    payload: msg
   }
 }
 
 
-export const setLogin = () => {
+export const userLogin = (data) => {
   return (dispatch) => {
-
+    // console.log(Object.keys(loginInitialState.userDetails).length)
+    if (Object.keys(loginInitialState.userDetails).length >= 0) {
+      dispatch(loginSuccessful(data));
+    } else {
+      dispatch(loginFailure("error"));
+    }
   }
 }

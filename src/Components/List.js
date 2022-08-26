@@ -8,7 +8,7 @@ import StickyFooter from "./SFooter";
 
 export const List = () => {
   const inState = useSelector((state) => state.allProducts.products);
-  console.log(inState);
+  // console.log(inState);
   return (
     <>
       <Container>

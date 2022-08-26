@@ -1,3 +1,5 @@
+import { Card } from "@mui/material";
+
 export const initialState = {
   products: [
     {
@@ -184,16 +186,17 @@ export const initialState = {
       title: "DANVOUY Womens T Shirt Casual Cotton Short",
     }
   ],
-  chosen: []
+
 };
 
 export const productReducer = (state = initialState, action) => {
-  if (action.type === "SET_PRODUCT") {
-    return { ...state, products: action.payload };
-  } else if (action.type === "SELECT_PRODUCT") {
-    return { ...state, chosen: action.payload }
-  } else if (action.type === "REMOVE_PRODUCT") {
-    return { ...state, chosen: action.payload }
+  // console.log("reducer", state.cart.push(1));
+  if (action.type === "S_PRODUCT") {
+    console.log("in");
+    return { ...state, cart: action.payload }
+  }
+  else if (action.type === "REMOVE_PRODUCT") {
+    return { ...state, cart: action.payload }
   }
   return state;
 };

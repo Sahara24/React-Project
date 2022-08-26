@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Paper from "@mui/material/Paper";
-import { Container, Grid, Typography } from "@mui/material";
+import { Alert, Container, Grid, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import { } from "@mui/icons-material";
 import Rating from "@mui/material/Rating";
@@ -9,84 +9,124 @@ import { mytheme } from "./Theme";
 import { useSelector } from "react-redux/es/exports";
 import { useParams } from "react-router";
 import Button from '@mui/material/Button';
+import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux/es/hooks/useDispatch";
+import { AddToCart } from "../Reducers/Actions";
+import { Link } from "@mui/material";
+import { AlertTitle } from "@mui/material";
 
 
 const SelectCard = () => {
-
+  const selector = useSelector(state => state.allProducts.products)
+  const cartState = useSelector(state => state.carts.cart);
+  const dispatch = useDispatch(AddToCart())
+  const navigate = useNavigate();
   const params = useParams();
-  console.log(params.id);
   const dataState = useSelector(state => state.allProducts.products[params.id - 1]);
-  console.log(dataState)
+  const obj = selector[params.id - 1];
+  const loginState = useSelector(state => state.login.userDetails);
+
+  const [check, setCheck] = useState(false);
+
+  const handleBuy = (e) => {
+    console.log(loginState);
+    if (Object.keys(loginState).length > 0) {
+      setCheck(true);
+    } else {
+      navigate("/login")
+    }
+  }
+
+  const handleCart = () => {
+    if (cartState.includes(selector[params.id - 1])) {
+      return;
+    } else {
+      dispatch(AddToCart(selector[params.id - 1]));
+    }
+
+  }
   return (
     <>
+
       <Container sx={{
         marginTop: "1rem"
       }}>
-        <Grid item key={dataState.uniqkey} >
-          <ThemeProvider theme={mytheme}>
-            <Paper elevation={1} sx={{
-              display: "flex",
-            }} className="paper-select">
-              <Box className="select-img-container">
-                <img src={`${dataState.image}`} alt={`${dataState.title}`} className="select-images" />
-              </Box>
-              <Box className="select-info-container">
-                <Typography variant="h6">
-                  {dataState.title}
-                </Typography>
-                <Box
-                  paddingX={0.5}
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  <Rating
-                    name="read-only"
-                    value={dataState.rating.rate}
-                    precision={0.25}
-                    size="small"
-                    readOnly
-                  />
-                  <Typography variant="body3" component="p" marginLeft={0.5}>
-                    {dataState.rating.rate}
-                  </Typography>
-                  <Typography variant="body3" component="p" marginLeft={0.5}>
-                    ({dataState.rating.count} reviews)
-                  </Typography>
+        {!check &&
+          <Grid item key={dataState.uniqkey} >
+            <ThemeProvider theme={mytheme}>
+              <Paper elevation={1} sx={{
+                display: "flex",
+              }} className="paper-select">
+                <Box className="select-img-container">
+                  <img src={`${dataState.image}`} alt={`${dataState.title}`} className="select-images" />
                 </Box>
-                <Box sx={{ paddingLeft: "4px" }} paddingX={1}>
-                  <Typography variant="h6" component="h3">
-                    ${dataState.price}
+                <Box className="select-info-container">
+                  <Typography variant="h6">
+                    {dataState.title}
                   </Typography>
+                  <Box
+                    paddingX={0.5}
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Rating
+                      name="read-only"
+                      value={dataState.rating.rate}
+                      precision={0.25}
+                      size="small"
+                      readOnly
+                    />
+                    <Typography variant="body3" component="p" marginLeft={0.5}>
+                      {dataState.rating.rate}
+                    </Typography>
+                    <Typography variant="body3" component="p" marginLeft={0.5}>
+                      ({dataState.rating.count} reviews)
+                    </Typography>
+                  </Box>
+                  <Box sx={{ paddingLeft: "4px" }} paddingX={1}>
+                    <Typography variant="h6" component="h3">
+                      ${dataState.price}
+                    </Typography>
+                  </Box>
+                  <Box sx={{
+                    marginTop: "0.7rem",
+                    marginLeft: "0.7rem",
+                    marginRight: "0.7rem"
+                  }}>
+                    <Typography variant="body2" className="description">
+                      {dataState.description}
+                    </Typography>
+                  </Box>
+                  <Box>
+                    <Button variant="contained" color="success" onClick={() => handleBuy()} size="small" sx={{
+                      margin: "1rem"
+                    }}>
+                      BUY
+                    </Button>
+                    <Button variant="outlined" color="secondary" onClick={() => handleCart()} size="small" sx={{
+                      marginTop: "1rem",
+                      marginBottom: "1rem"
+                    }}>
+                      ADD TO CART
+                    </Button>
+                  </Box>
                 </Box>
-                <Box sx={{
-                  marginTop: "0.7rem",
-                  marginLeft: "0.7rem",
-                  marginRight: "0.7rem"
-                }}>
-                  <Typography variant="body2" className="description">
-                    {dataState.description}
-                  </Typography>
-                </Box>
-                <Box>
-                  <Button variant="contained" color="success" size="small" sx={{
-                    margin: "1rem"
+              </Paper>
+            </ThemeProvider>
+          </Grid>}
+        <Box sx={{
+          margin: "3rem"
+        }}>
+          {check && <Alert severity="success">
+            <AlertTitle>Order Placed.</AlertTitle>
+            You will receive your order soon. <strong onClick={() => navigate("/")} className="str">
+              {"Continue Shopping"}
+            </strong>
+          </Alert>}
+        </Box>
 
-                  }}>
-                    BUY
-                  </Button>
-                  <Button variant="outlined" color="secondary" size="small" sx={{
-                    marginTop: "1rem",
-                    marginBottom: "1rem"
-                  }}>
-                    ADD TO CART
-                  </Button>
-                </Box>
-              </Box>
-            </Paper>
-          </ThemeProvider>
-        </Grid>
       </Container>
 
     </>

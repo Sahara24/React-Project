@@ -6,6 +6,7 @@ import Login from "./Components/Login";
 import SelectCard from "./Components/SelectCard";
 import { InfoCard } from "./Components/InfoCard";
 import SignUp from "./Components/SignUp";
+import Cart from "./Components/Cart";
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/:id' element={<SelectCard />} />
         <Route path='/signup' element={<SignUp />} />
-        {/* <Route path="/cart" element={<Cart />} /> */}
+        <Route path="/cart" element={<Cart />} />
+        <Route path='*' element={<h4>No page found :(</h4>} />
       </Routes>
 
     </>

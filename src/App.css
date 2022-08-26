@@ -67,4 +67,11 @@
   .select-info-container {
     max-width: 60%;
   }
+  .button-container {
+    margin-top: 7rem;
+  }
+}
+
+.str {
+  cursor: pointer;
 }

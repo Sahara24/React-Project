@@ -12,17 +12,35 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useDispatch } from 'react-redux/es/hooks/useDispatch';
+import { userLogin } from '../Reducers/Actions';
+import { useNavigate } from "react-router-dom";
+
 
 const theme = createTheme();
 
 export default function Login() {
+
+  const history = useNavigate();
+  const dispatch = useDispatch();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    if (data.get('email').length === 0 || data.get('password').length === 0) {
+      alert("Please fill all the details")
+      return;
+    }
+    const userData = {
+      username: data.get('email'),
+      password: data.get('password')
+    }
+    dispatch(userLogin(userData));
+    history(-1);
+    // console.log({
+    //   email: data.get('email'),
+    //   password: data.get('password'),
+    // });
   };
 
   return (
@@ -76,17 +94,20 @@ export default function Login() {
             >
               Sign In
             </Button>
-            <Grid container>
-              <Grid item xs>
+            <Grid container sx={{
+              display: "flex",
+              justifyContent: "center"
+            }}>
+              <Grid item md >
                 <Link href="/" variant="body2">
                   Home
                 </Link>
               </Grid>
-              <Grid item>
+              {/* <Grid item>
                 <Link href="/signup" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
-              </Grid>
+              </Grid> */}
             </Grid>
           </Box>
         </Box>
