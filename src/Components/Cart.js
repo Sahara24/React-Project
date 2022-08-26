@@ -101,7 +101,7 @@ const Cart = (props) => {
           <Typography variant="h5" align="center" sx={{
             marginTop: "1.7rem"
           }}>Your cart is empty</Typography>
-          <img src="https://cdn.dribbble.com/users/721524/screenshots/4112199/media/ab1a209f355ad77379f7c4e1326b0d96.png" alt="Empty cart image" height="48%" width="45%" />
+          <img src="https://cdn.dribbble.com/users/721524/screenshots/4112199/media/ab1a209f355ad77379f7c4e1326b0d96.png" alt="Empty cart" height="48%" width="45%" />
 
           <Link href="/" variant="body2">
             <Button variant="contained" size="small" color="success" sx={{

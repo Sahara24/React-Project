@@ -23,7 +23,6 @@ export const signOut = () => {
 }
 
 export const loginSuccessful = (data) => {
-  // console.log(data)
   return {
     type: 'login-success',
     payload: data

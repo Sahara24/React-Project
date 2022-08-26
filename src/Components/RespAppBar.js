@@ -20,10 +20,8 @@ import LockOpenIcon from '@mui/icons-material/LockOpen';
 export default function RespAppBar() {
   const loginState = useSelector(state => state.login.userDetails);
   const isLogged = Object.keys(loginState).length > 0;
-  console.log(isLogged)
   const dispatch = useDispatch();
   const dataState = useSelector(state => state.carts.cart);
-  // const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -38,10 +36,10 @@ export default function RespAppBar() {
     setMobileMoreAnchorEl(null);
   };
 
-  const handleMenuClose = () => {
-    // setAnchorEl(null);
-    handleMobileMenuClose();
-  };
+  // const handleMenuClose = () => {
+  //   setAnchorEl(null);
+  //   handleMobileMenuClose();
+  // };
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);

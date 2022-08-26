@@ -1,5 +1,3 @@
-import { Card } from "@mui/material";
-
 export const initialState = {
   products: [
     {
@@ -190,7 +188,6 @@ export const initialState = {
 };
 
 export const productReducer = (state = initialState, action) => {
-  // console.log("reducer", state.cart.push(1));
   if (action.type === "S_PRODUCT") {
     console.log("in");
     return { ...state, cart: action.payload }
@@ -201,8 +198,3 @@ export const productReducer = (state = initialState, action) => {
   return state;
 };
 
-/*
-[
-  
-]
-*/

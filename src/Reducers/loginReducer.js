@@ -2,7 +2,7 @@ export const loginInitialState = {
   loading: false,
   userDetails: {},
   error: ''
-}
+};
 
 export const loginReducer = (state = loginInitialState, action) => {
   // console.log(state)

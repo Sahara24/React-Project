@@ -12,7 +12,6 @@ import Button from '@mui/material/Button';
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux/es/hooks/useDispatch";
 import { AddToCart } from "../Reducers/Actions";
-import { Link } from "@mui/material";
 import { AlertTitle } from "@mui/material";
 
 
@@ -23,7 +22,6 @@ const SelectCard = () => {
   const navigate = useNavigate();
   const params = useParams();
   const dataState = useSelector(state => state.allProducts.products[params.id - 1]);
-  const obj = selector[params.id - 1];
   const loginState = useSelector(state => state.login.userDetails);
 
   const [check, setCheck] = useState(false);
