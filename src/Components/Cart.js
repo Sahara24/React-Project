@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import Paper from "@mui/material/Paper";
-import { Link, Container, Grid, Typography, Alert } from "@mui/material";
+import { Container, Grid, Typography, Alert } from "@mui/material";
 import Box from "@mui/material/Box";
 import { } from "@mui/icons-material";
 import { ThemeProvider } from "@mui/material";
@@ -103,11 +103,9 @@ const Cart = (props) => {
           }}>Your cart is empty</Typography>
           <img src="https://cdn.dribbble.com/users/721524/screenshots/4112199/media/ab1a209f355ad77379f7c4e1326b0d96.png" alt="Empty cart" height="48%" width="45%" />
 
-          <Link href="/" variant="body2">
-            <Button variant="contained" size="small" color="success" sx={{
-              margin: "1rem"
-            }}>SHOP NOW</Button>
-          </Link>
+          <Button variant="contained" size="small" onClick={() => navigate('/')} color="success" sx={{
+            margin: "1rem"
+          }}>SHOP NOW</Button>
           {/* {check && <Alert severity="success">Order Placed. Thank you</Alert>} */}
         </Box>
       }
