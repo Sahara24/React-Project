@@ -126,7 +126,7 @@ export default function RespAppBar() {
             variant="h6"
             noWrap
             component="div"
-            sx={{ display: { xs: "none", sm: "block" } }}
+            sx={{ display: { xs: "block", sm: "block" } }}
           >
             E-SHOP
           </Typography>
