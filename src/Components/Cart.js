@@ -41,9 +41,9 @@ const Cart = (props) => {
           <ThemeProvider theme={mytheme}>
             <Paper elevation={3} sx={{
               display: "flex",
-            }} className="paper-select">
+            }} className="cart-select">
               <Box className>
-                <img src={`${el.image}`} alt={`${el.title}`} className="select-images" />
+                <img src={`${el.image}`} alt={`${el.title}`} className="cart-images" />
               </Box>
               <Box className>
                 <Typography variant="h6" sx={{ marginLeft: "1rem" }}>

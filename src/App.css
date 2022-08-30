@@ -58,6 +58,19 @@
   .select-info-container {
     max-width: "";
   }
+  .cart-select {
+    flex-direction: column;
+    align-items: center;
+  }
+  .info-paper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .imgg {
+    width: 20rem;
+    height: 14rem;
+  }
 }
 
 @media only screen and (min-width: 650px) {
@@ -74,4 +87,10 @@
 
 .str {
   cursor: pointer;
+}
+
+.cart-images {
+  width: 16rem;
+  height: 14rem;
+  padding: 1rem;
 }

@@ -19,7 +19,7 @@ export const InfoCard = (props) => {
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} key={props.uniqkey} className="cards" onClick={(e) => { handleClick(e, props.uniqkey) }}>
       <ThemeProvider theme={mytheme}>
-        <Paper elevation={3}>
+        <Paper elevation={3} className="info-paper">
           <img src={`${props.image}`} alt={`${props.title}`} className="imgg" />
           <Box paddingX={1}>
             <Typography variant="body1">
