@@ -70,7 +70,7 @@ const Cart = (props) => {
             display: "flex",
             justifyContent: "center"
           }}>
-            <Typography variant="h6" color="green">Total Amount: {totalPrice}</Typography>
+            <Typography variant="h6" color="green">Total Amount: ${totalPrice.toFixed(2)}</Typography>
           </Box>
           <Box className="button-container" sx={{
             display: "flex",

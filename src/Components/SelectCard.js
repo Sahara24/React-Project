@@ -12,10 +12,13 @@ import Button from '@mui/material/Button';
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux/es/hooks/useDispatch";
 import { AddToCart } from "../Reducers/Actions";
-import { AlertTitle } from "@mui/material";
+import { AlertTitle, Snackbar } from "@mui/material";
+
 
 
 const SelectCard = () => {
+  const [open, setOpen] = useState(false);
+  const [open1, setOpen1] = useState(false);
   const selector = useSelector(state => state.allProducts.products)
   const cartState = useSelector(state => state.carts.cart);
   const dispatch = useDispatch(AddToCart())
@@ -37,12 +40,19 @@ const SelectCard = () => {
 
   const handleCart = () => {
     if (cartState.includes(selector[params.id - 1])) {
+      setOpen1(true);
       return;
     } else {
       dispatch(AddToCart(selector[params.id - 1]));
+      setOpen(true);
     }
-
   }
+
+  const handleClose = () => {
+    setOpen(false);
+    setOpen1(false);
+  }
+
   return (
     <>
 
@@ -109,6 +119,31 @@ const SelectCard = () => {
                     }}>
                       ADD TO CART
                     </Button>
+                    <Snackbar
+                      autoHideDuration={2000}
+                      open={open}
+                      onClose={handleClose}
+                      anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'center',
+                      }}
+                    >
+                      <Alert onClose={handleClose} variant="filled" severity="success" sx={{ width: '100%' }}>
+                        Added to cart
+                      </Alert>
+                    </Snackbar>
+                    <Snackbar
+                      autoHideDuration={3000}
+                      open={open1}
+                      onClose={handleClose}
+                      anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'center',
+                      }}>
+                      <Alert variant="filled" severity="warning">
+                        Item already added in the cart
+                      </Alert>
+                    </Snackbar>
                   </Box>
                 </Box>
               </Paper>
