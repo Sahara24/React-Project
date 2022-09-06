@@ -30,7 +30,6 @@ const SelectCard = () => {
   const [check, setCheck] = useState(false);
 
   const handleBuy = (e) => {
-    console.log(loginState);
     if (Object.keys(loginState).length > 0) {
       setCheck(true);
     } else {
