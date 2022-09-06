@@ -1,3 +1,4 @@
+
 const initialState = {
   cart: []
 }
@@ -13,18 +14,10 @@ export const cartReducer = (state = initialState, action) => {
       ...state,
       cart: []
     };
-  } else if (action.type === "EMPTY_CART") {
+  } else if (action.type === "REMOVE_ITEM") {
     return {
       ...state,
-      cart: state.cart.map(product =>
-        product.selected
-          ? {
-            ...product,
-            selected: false, quantity: 1
-          }
-          : product,
-      ),
-
+      cart: state.cart.filter(prod => prod.id !== Number(action.payload))
     }
   }
   return state;

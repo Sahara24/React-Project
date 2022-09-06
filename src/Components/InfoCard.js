@@ -13,8 +13,8 @@ export const InfoCard = (props) => {
   const navigate = useNavigate();
   const handleClick = (e, id) => {
     setSearchParams({ userId: `${id}` })
-    navigate(`/${id}`)
-    console.log(searchParams)
+    navigate(`/${id}`);
+    console.log(searchParams);
   }
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} key={props.uniqkey} className="cards" onClick={(e) => { handleClick(e, props.uniqkey) }}>

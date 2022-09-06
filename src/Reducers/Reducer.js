@@ -187,14 +187,7 @@ export const initialState = {
 
 };
 
-export const productReducer = (state = initialState, action) => {
-  if (action.type === "S_PRODUCT") {
-    console.log("in");
-    return { ...state, cart: action.payload }
-  }
-  else if (action.type === "REMOVE_PRODUCT") {
-    return { ...state, cart: action.payload }
-  }
+export const productReducer = (state = initialState) => {
   return state;
 };
 

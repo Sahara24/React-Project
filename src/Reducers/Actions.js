@@ -15,6 +15,12 @@ export const removeFromCart = (data) => {
   }
 }
 
+export const removeOneItem = (id) => {
+  return {
+    type: "REMOVE_ITEM",
+    payload: id,
+  }
+}
 
 export const signOut = () => {
   return {
@@ -28,7 +34,7 @@ export const loginSuccessful = (data) => {
     payload: data
   }
 }
-//this is a synchronous action
+
 export const loginFailure = (msg) => {
   return {
     type: 'login-failure',
@@ -39,7 +45,6 @@ export const loginFailure = (msg) => {
 
 export const userLogin = (data) => {
   return (dispatch) => {
-    // console.log(Object.keys(loginInitialState.userDetails).length)
     if (Object.keys(loginInitialState.userDetails).length >= 0) {
       dispatch(loginSuccessful(data));
     } else {
