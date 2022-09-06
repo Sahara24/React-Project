@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { Fragment, useState } from "react";
 import Paper from "@mui/material/Paper";
 import { Container, Grid, Typography, Alert } from "@mui/material";
 import Box from "@mui/material/Box";
@@ -13,7 +13,6 @@ import { useNavigate } from "react-router";
 
 const Cart = (props) => {
   let totalPrice = 0;
-  const keyRef = useRef();
   const dispatch = useDispatch();
   const dataState = useSelector(state => state.carts.cart);
   const loginState = useSelector(state => state.login.userDetails);
@@ -44,7 +43,6 @@ const Cart = (props) => {
   }
 
   const removeItem = (e) => {
-    console.log(keyRef);
     dispatch(removeFromCart());
   }
 
@@ -55,8 +53,8 @@ const Cart = (props) => {
   const arr = dataState.map((el) => {
     totalPrice += el.price;
     return (
-      <>
-        <Grid item key={el.id} sx={{ margin: "4px" }}>
+      <Fragment key={el.id}>
+        <Grid item sx={{ margin: "4px" }}>
           <ThemeProvider theme={mytheme}>
             <Paper elevation={3} className="cart-select">
               <Box className="cart-img-container">
@@ -77,7 +75,7 @@ const Cart = (props) => {
             </Paper>
           </ThemeProvider>
         </Grid>
-      </>
+      </Fragment>
     )
   })
   return (
@@ -112,7 +110,7 @@ const Cart = (props) => {
             >
               BUY ALL
             </Button>
-            <Button variant="contained" color="error" ref={keyRef} onClick={(e) => removeItem(e)} size="small" sx={{
+            <Button variant="contained" color="error" onClick={(e) => removeItem(e)} size="small" sx={{
               marginTop: "1rem",
               marginBottom: "1rem"
             }}>
