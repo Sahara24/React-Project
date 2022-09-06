@@ -5,7 +5,6 @@ export const loginInitialState = {
 };
 
 export const loginReducer = (state = loginInitialState, action) => {
-  // console.log(state)
   if (action.type === 'LOG_OUT') {
     return {
       ...state,
