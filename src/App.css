@@ -36,7 +36,10 @@ html {
   /* font-size: 5rem; */
   padding: 1rem;
   border-radius: 35%;
-  background: linear-gradient(rgba(35, 35, 84, 0.559), rgba(6, 28, 28, 0.603));
+  background: linear-gradient(
+    rgba(20, 20, 123, 0.629),
+    rgba(12, 92, 92, 0.763)
+  );
 }
 .main-div {
   display: flex;
