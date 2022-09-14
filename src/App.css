@@ -115,11 +115,11 @@ html {
   margin: 0.7rem 0 0 0.7rem;
 }
 .filter-select {
-  padding: 10px;
+  padding: 1rem;
 }
 
 #container {
-  min-height: 89vh;
+  min-height: 91.5vh;
 }
 
 .imgg {
