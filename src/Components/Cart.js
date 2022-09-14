@@ -79,7 +79,9 @@ const Cart = (props) => {
     )
   })
   return (
-    <>
+    <Box sx={{
+      minHeight: "91vh",
+    }}>
       {(check && dataState.length >= 0) && <Box sx={{
         dispaly: "flex",
         flexDirection: "column",
@@ -128,7 +130,7 @@ const Cart = (props) => {
           <Typography variant="h5" align="center" sx={{
             marginTop: "1.7rem"
           }}>Your cart is empty</Typography>
-          <img src="https://cdn.dribbble.com/users/721524/screenshots/4112199/media/ab1a209f355ad77379f7c4e1326b0d96.png" alt="Empty cart" height="48%" width="45%" />
+          <img id="cart-empty-img" src="https://cdn.dribbble.com/users/721524/screenshots/4112199/media/ab1a209f355ad77379f7c4e1326b0d96.png" alt="Empty cart" />
 
           <Button variant="contained" size="small" onClick={() => navigate('/')} color="success" sx={{
             margin: "1rem"
@@ -152,7 +154,7 @@ const Cart = (props) => {
       }
 
 
-    </>
+    </Box>
   )
 }
 

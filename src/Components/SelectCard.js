@@ -56,7 +56,8 @@ const SelectCard = () => {
     <>
 
       <Container sx={{
-        marginTop: "1rem"
+        marginTop: "1rem",
+        minHeight: "89vh",
       }}>
         {!check &&
           <Grid item key={dataState.uniqkey} >

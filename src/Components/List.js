@@ -1,34 +1,98 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { useSelector } from "react-redux";
 import { InfoCard } from "./InfoCard";
 import { Container } from "@mui/system";
 import Grid from "@mui/material/Grid";
-import StickyFooter from "./SFooter";
+import { Button } from "@mui/material";
+import { Footer } from "./Footer";
 
 export const List = () => {
+  const [displayArr, setDisplayArr] = useState([]);
+  const [filterCheck, setFilterCheck] = useState(false);
   const inState = useSelector((state) => state.allProducts.products);
+  const displayAll = () => {
+    setFilterCheck(true);
+    setDisplayArr(inState);
+  }
+  const displayMen = () => {
+    setFilterCheck(true);
+    let tempArr = [];
+    tempArr = inState.filter(el => el.category === "men's clothing");
+    setDisplayArr(tempArr);
+  }
+  const displayWomen = () => {
+    setFilterCheck(true);
+    let tempArr = [];
+    tempArr = inState.filter(el => el.category === "women's clothing");
+    setDisplayArr(tempArr);
+    console.log(filterCheck)
+  }
+  const displayJewellery = () => {
+    setFilterCheck(true);
+    let tempArr = [];
+    tempArr = inState.filter(el => el.category === "jewelery");
+    setDisplayArr(tempArr);
+  }
+  const displayElectronics = () => {
+    setFilterCheck(true);
+    let tempArr = [];
+    tempArr = inState.filter(el => el.category === "electronics");
+    setDisplayArr(tempArr);
+  }
   return (
     <>
-      <Container>
+      <div className="main-div" >
+        <h1 className="shopTitle">E-Shop</h1>
+        <div className="ad-div">
+          <h2>
+            Look better and live better.
+          </h2>
+          <h4> Check out our latest <a href="#container" className="nav-btn">Products</a></h4>
+        </div>
+      </div>
+      <Container id="container">
+        <span className="filter-select">Select Category</span>
+        <div className="button-wrapper">
+          <Button variant="contained" size="small" onClick={displayAll}>ALL</Button>
+          <Button variant="contained" size="small" onClick={displayMen}>MEN</Button>
+          <Button variant="contained" size="small" onClick={displayWomen}>WOMEN</Button>
+          <Button variant="contained" size="small" onClick={displayJewellery}>JEWELLERY</Button>
+          <Button variant="contained" size="small" onClick={displayElectronics}>ELECTRONICS</Button>
+        </div>
         <Grid container spacing={5} marginTop="3px" marginBottom="3px">
-          {inState.map((el) => {
-            return (
-              <Fragment key={el.id}>
-                <InfoCard
-                  image={el.image}
-                  title={el.title}
-                  uniqkey={el.id}
-                  price={el.price}
-                  rating={el.rating}
-                  category={el.category}
-                />
-              </Fragment>
+          {filterCheck ?
+            displayArr.map((el) => {
+              return (
+                <Fragment key={el.id}>
+                  <InfoCard
+                    image={el.image}
+                    title={el.title}
+                    uniqkey={el.id}
+                    price={el.price}
+                    rating={el.rating}
+                    category={el.category}
+                  />
+                </Fragment>
+              )
+            }) :
+            inState.map((el) => {
+              return (
+                <Fragment key={el.id}>
+                  <InfoCard
+                    image={el.image}
+                    title={el.title}
+                    uniqkey={el.id}
+                    price={el.price}
+                    rating={el.rating}
+                    category={el.category}
+                  />
+                </Fragment>
 
-            );
-          })}
+              );
+            })}
         </Grid>
       </Container>
-      <StickyFooter />
+      <Footer />
     </>
   );
 };
