@@ -17,10 +17,12 @@ export const InfoCard = (props) => {
     console.log(searchParams);
   }
   return (
-    <Grid item xs={12} sm={6} md={4} lg={3} key={props.uniqkey} className="cards" onClick={(e) => { handleClick(e, props.uniqkey) }}>
+    <Grid title="click for more details" item xs={12} sm={6} md={4} lg={3} key={props.uniqkey} className="cards" onClick={(e) => { handleClick(e, props.uniqkey) }}>
       <ThemeProvider theme={mytheme}>
         <Paper elevation={1} className="info-paper">
-          <img src={props.image} alt={props.title} className="imgg" />
+          <div className="prodImgs">
+            <img src={props.image} alt={props.title} className="imgg" />
+          </div>
           <hr />
           <Box paddingX={1}>
             <Typography variant="body1">

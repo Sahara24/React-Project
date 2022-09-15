@@ -1,5 +1,12 @@
 import { loginInitialState } from "./loginReducer";
 
+export const getProducts = (data) => {
+  return {
+    type: "GET_PRODUCTS",
+    payload: data,
+  }
+}
+
 export const AddToCart = (data) => {
   // console.log(data);
   return {
@@ -50,5 +57,19 @@ export const userLogin = (data) => {
     } else {
       dispatch(loginFailure("error"));
     }
+  }
+}
+
+export const fetchProducts = () => {
+  return (dispatch) => {
+    fetch('https://fakestoreapi.com/products')
+      .then(res => res.json())
+      .then((data) => {
+        console.log(data)
+        dispatch(getProducts(data));
+      })
+      .catch((e) => {
+        console.log("Error")
+      })
   }
 }

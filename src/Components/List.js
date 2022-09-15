@@ -1,14 +1,19 @@
-import React, { Fragment, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { Fragment, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { InfoCard } from "./InfoCard";
 import { Container } from "@mui/system";
 import Grid from "@mui/material/Grid";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { Footer } from "./Footer";
+import { fetchProducts } from "../Reducers/Actions";
 
 export const List = () => {
   const [displayArr, setDisplayArr] = useState([]);
   const [filterCheck, setFilterCheck] = useState(false);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch])
   const inState = useSelector((state) => state.allProducts.products);
   const displayAll = () => {
     setFilterCheck(true);
@@ -41,16 +46,12 @@ export const List = () => {
   }
   return (
     <>
-      <div className="main-div" >
-        <h1 className="shopTitle">E-Shop</h1>
-        <div className="ad-div">
-          <h2>
-            Look better and live better.
-          </h2>
-          <h4> Check out our latest <a href="#container" className="nav-btn">Products</a></h4>
-        </div>
-      </div>
       <Container id="container">
+        <Typography variant="h3" sx={{
+          textAlign: "center",
+          margin: "1rem 1rem 0.4rem",
+        }}>Available Products</Typography>
+        <hr className="separator" />
         <span className="filter-select">Select Category</span>
         <div className="button-wrapper">
           <Button variant="contained" size="small" onClick={displayAll}>ALL</Button>
