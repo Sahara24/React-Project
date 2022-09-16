@@ -36,10 +36,6 @@ export default function RespAppBar() {
     setMobileMoreAnchorEl(null);
   };
 
-  // const handleMenuClose = () => {
-  //   setAnchorEl(null);
-  //   handleMobileMenuClose();
-  // };
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
@@ -109,7 +105,10 @@ export default function RespAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" sx={{
+        backgroundColor: "rgb(43, 34, 69)",
+        color: "white",
+      }}>
         <Toolbar>
           <IconButton
             size="large"

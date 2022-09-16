@@ -37,8 +37,8 @@ html {
   padding: 1rem;
   border-radius: 35%;
   background: linear-gradient(
-    rgba(20, 20, 123, 0.629),
-    rgba(12, 92, 92, 0.763)
+    rgba(22, 22, 153, 0.804),
+    rgba(14, 116, 116, 0.808)
   );
 }
 .main-div {
@@ -103,7 +103,7 @@ html {
 }
 .nav-btn:hover {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  color: rgb(37, 156, 140);
+  color: rgb(127, 224, 211);
   background-color: #3e5151;
 }
 
