@@ -17,6 +17,8 @@ import { signOut } from "../Reducers/Actions";
 import LogoutIcon from '@mui/icons-material/Logout';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 
+
+
 export default function RespAppBar() {
   const loginState = useSelector(state => state.login.userDetails);
   const isLogged = Object.keys(loginState).length > 0;
@@ -42,26 +44,6 @@ export default function RespAppBar() {
   };
 
   const menuId = "primary-search-account-menu";
-  // const renderMenu = (
-  //   <Menu
-  //     anchorEl={anchorEl}
-  //     anchorOrigin={{
-  //       vertical: "top",
-  //       horizontal: "right",
-  //     }}
-  //     id={menuId}
-  //     keepMounted
-  //     transformOrigin={{
-  //       vertical: "top",
-  //       horizontal: "right",
-  //     }}
-  //     open={isMenuOpen}
-  //     onClose={handleMenuClose}
-  //   >
-  //     <MenuItem onClick={handleMenuClose}>Profile</MenuItem> 
-  //    <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-  //   </Menu>
-  // );
 
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
@@ -163,7 +145,6 @@ export default function RespAppBar() {
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
-      {/* {renderMenu} */}
     </Box>
   );
 }

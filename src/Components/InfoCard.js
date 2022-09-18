@@ -13,7 +13,7 @@ export const InfoCard = (props) => {
   const navigate = useNavigate();
   const handleClick = (e, id) => {
     setSearchParams({ userId: `${id}` })
-    navigate(`/${id}`);
+    navigate(`/products/${id}`);
     console.log(searchParams);
   }
   return (
