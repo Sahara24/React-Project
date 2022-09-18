@@ -72,7 +72,7 @@ const SelectCard = () => {
         Object.keys(dataState).length > 0 ?
           <Container sx={{
             marginTop: "1rem",
-            minHeight: "89vh",
+            minHeight: "90vh",
           }}>
             {!check &&
               <Grid item key={dataState.uniqkey} >
@@ -81,10 +81,10 @@ const SelectCard = () => {
                     display: "flex",
                   }} className="paper-select">
                     <Box className="select-img-container">
-                      <img src={`${dataState.image}`} alt={`${dataState.title}`} className="select-images" />
+                      <img src={dataState.image} alt={dataState.title} className="select-images" />
                     </Box>
                     <Box className="select-info-container">
-                      <Typography variant="h6">
+                      <Typography variant="h6" sx={{ paddingLeft: "0.5rem" }}>
                         {dataState.title}
                       </Typography>
                       <Box
@@ -109,7 +109,9 @@ const SelectCard = () => {
                         </Typography>
                       </Box>
                       <Box sx={{ paddingLeft: "4px" }} paddingX={1}>
-                        <Typography variant="h6" component="h3">
+                        <Typography variant="h6" component="h3" sx={{
+                          paddingLeft: "0.5rem",
+                        }}>
                           ${dataState.price}
                         </Typography>
                       </Box>
@@ -118,7 +120,9 @@ const SelectCard = () => {
                         marginLeft: "0.7rem",
                         marginRight: "0.7rem"
                       }}>
-                        <Typography variant="body2" className="description">
+                        <Typography variant="body2" className="description" sx={{
+                          paddingLeft: "0.5rem",
+                        }}>
                           {dataState.description}
                         </Typography>
                       </Box>
