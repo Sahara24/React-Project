@@ -177,7 +177,7 @@ const SelectCard = () => {
           </Container>
           :
           <Box sx={{
-            minHeight: "95vh",
+            minHeight: "99vh",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
