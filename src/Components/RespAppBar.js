@@ -16,10 +16,28 @@ import { useDispatch } from "react-redux";
 import { signOut } from "../Reducers/Actions";
 import LogoutIcon from '@mui/icons-material/Logout';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
+import { Stack, TextField } from "@mui/material";
+import { Search } from "@mui/icons-material";
 
+export default function RespAppBar({ setSearchArr }) {
+  const nav = useNavigate();
+  const [search, setSearch] = React.useState("");
 
+  const handleClick = async () => {
+    if (search) {
+      const res = await fetch('https://fakestoreapi.com/products');
+      const resData = await res.json();
+      const searchedData = resData.filter((item) => item.category.toLowerCase().includes(search)
+        || item.description.toLowerCase().includes(search)
+        || item.title.toLowerCase().includes(search)
+      )
+      setSearchArr(searchedData);
+      nav('/search');
+      console.log(searchedData);
+      setSearch("");
+    }
+  }
 
-export default function RespAppBar() {
   const loginState = useSelector(state => state.login.userDetails);
   const isLogged = Object.keys(loginState).length > 0;
   const dispatch = useDispatch();
@@ -100,7 +118,6 @@ export default function RespAppBar() {
             sx={{ mr: 2 }}
             onClick={() => navigate('/')}
           >
-            {/* <MenuIcon /> */}
             <HomeIcon />
           </IconButton>
           <Typography
@@ -111,7 +128,21 @@ export default function RespAppBar() {
           >
             E-SHOP
           </Typography>
+
           <Box sx={{ flexGrow: 1 }} />
+          <Stack direction='row' alignItems='center' mr="10px">
+            <TextField size="small"
+              placeholder="search products"
+              value={search}
+              onChange={(e) => setSearch(e.target.value.toLowerCase())}
+              InputProps={{ style: { fontWeight: 500 } }}
+              sx={{
+                width: '11rem',
+                backgroundColor: "rgb(245,245,245)",
+                borderRadius: "7px",
+              }} />
+            <Search onClick={handleClick} />
+          </Stack>
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton size="large" aria-label="Items in cart" color="inherit" onClick={() => navigate('/cart')}>
               <Badge badgeContent={dataState.length} color="error">

@@ -7,11 +7,14 @@ import SelectCard from "./Components/SelectCard";
 import Cart from "./Components/Cart";
 import { PageNotFound } from "./Components/PageNotFound";
 import { Home } from "./Components/Home";
+import { useState } from "react";
+import { Search } from "./Components/Search";
 
 function App() {
+  const [searchArr, setSearchArr] = useState([]);
   return (
     <>
-      <RespAppBar />
+      <RespAppBar setSearchArr={setSearchArr} />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/products' element={<List />} />
@@ -19,6 +22,7 @@ function App() {
         <Route path='/products/:id' element={<SelectCard />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='*' element={<PageNotFound />} />
+        <Route path='/search' element={<Search searchArr={searchArr} />} />
       </Routes>
 
     </>
