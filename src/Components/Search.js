@@ -7,7 +7,7 @@ export const Search = ({ searchArr }) => {
   console.log(searchArr)
   return (
     <>
-      {searchArr.length && <Typography variant="h4" mt="1rem" ml="1rem">Matching Results</Typography>}
+      {searchArr.length > 0 && <Typography variant="h4" mt="1rem" ml="1rem">Matching Results</Typography>}
       <Stack minHeight="86vh" mt="2rem" flexDirection="row" flexWrap="wrap">
         {
           searchArr.length > 0 ?
@@ -28,18 +28,18 @@ export const Search = ({ searchArr }) => {
                 </Box>
               )
             }) : <Box sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
+              // display: "flex",
+              // flexDirection: "column",
+              // justifyContent: "center",
               width: "100%",
               alignItems: "center"
             }}>
-              <Typography variant="h3" sx={{
+              <Typography variant="h4" sx={{
                 color: "#ff2625",
                 margin: "2rem"
-              }}>No resuls found</Typography>
+              }}>No results found</Typography>
               <Link to={'/'}><Typography sx={{
-                textDecoration: "none"
+                margin: "2rem"
               }}>🏠</Typography></Link>
             </Box>
         }
