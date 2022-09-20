@@ -37,10 +37,8 @@ export const Search = ({ searchArr }) => {
               <Typography variant="h4" sx={{
                 color: "#ff2625",
                 margin: "2rem"
-              }}>No results found</Typography>
-              <Link to={'/'}><Typography sx={{
-                margin: "2rem"
-              }}>🏠</Typography></Link>
+              }}>No results found <Link to={'/'}>🏠</Link></Typography>
+
             </Box>
         }
       </Stack>
